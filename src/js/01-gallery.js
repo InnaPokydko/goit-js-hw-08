@@ -1,13 +1,13 @@
-import { galleryItems } from "./gallery-items.js";
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+import { galleryItems } from './gallery-items.js';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 // Change code below this line
 
-const galleryContainer = document.querySelector(".gallery");
+const galleryContainer = document.querySelector('.gallery');
 const itemsEl = createGalleryItems(galleryItems);
 
-galleryContainer.insertAdjacentHTML("beforeend", itemsEl);
-galleryContainer.addEventListener("click", onImgClickCreateModal);
+galleryContainer.insertAdjacentHTML('beforeend', itemsEl);
+galleryContainer.addEventListener('click', onImgClickCreateModal);
 
 function createGalleryItems(gallery) {
   return gallery
@@ -23,15 +23,14 @@ function createGalleryItems(gallery) {
   </a>
 </div>`;
     })
-    .join("");
+    .join('');
 }
 
 function onImgClickCreateModal(evn) {
   evn.preventDefault();
 }
-  
-     new SimpleLightbox(".gallery a", {
-        captionDelay: 250,
-        captionsData: "alt",
-    })
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionDelay: 250,
+  captionsData: 'alt',
+});
