@@ -1,4 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 // Change code below this line
 
 const galleryContainer = document.querySelector(".gallery");
@@ -30,7 +32,7 @@ function onImgClickCreateModal(evn) {
     return;
   }
 
-    const instance = basicLightbox.create(
+    const instance = simplelightbox.create(
     `<img src="${evn.target.dataset.source}" width="340" height="480"/>`,
     {
       onShow: () => document.addEventListener("keydown", onCloseModal),
