@@ -28,22 +28,10 @@ function createGalleryItems(gallery) {
 
 function onImgClickCreateModal(evn) {
   evn.preventDefault();
-  if (!evn.target.classList.contains("gallery__image")) {
-    return;
-  }
-
-    const instance = simplelightbox.create(
-    `<img src="${evn.target.dataset.source}" width="340" height="480"/>`,
-    {
-      onShow: () => document.addEventListener("keydown", onCloseModal),
-      onClose: () => document.removeEventListener("keydown", onCloseModal),
-    }
-  );
-  instance.show();
-
-   function onCloseModal(evn) {
-    if (evn.code === "Escape") {
-      instance.close();
-    }
-  }
 }
+  
+     new SimpleLightbox(".gallery a", {
+        captionDelay: 250,
+        captionsData: "alt",
+    })
+
