@@ -23,28 +23,24 @@ function storageFormData(evt) {
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-
+  
+  if (refs.input.value === "" || refs.textarea.value === "") {
+    return alert("Please fill in all the fields!");
+  }
+  
   const savedDatas = JSON.parse(localStorage.getItem(STORAGE_KEY));
   console.log(savedDatas);
-
-  evt.currentTarget.reset();
+ 
+    evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
   formData = {};
 }
 
 function reloadPage() {
-  if (load(STORAGE_KEY)) {
-    const outputForm = load(STORAGE_KEY);
-    const formKeys = Object.keys(outputForm);
-    formKeys.map(element => {
-        document.querySelector(`[name='${element}']`).value = outputForm[element];
-    });
+   if (savedValues) {
+      (refs.input.value = savedDataObject.email || ''),
+     (refs.textarea.value = savedDataObject.message || '');
   }
 }
-  // if (savedValues) {
-  //     (refs.input.value = savedDataObject.email || ''),
-  //    (refs.textarea.value = savedDataObject.message || '');
-  // }
-// }
 
 
