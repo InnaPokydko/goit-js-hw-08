@@ -21,9 +21,9 @@ function storageFormData(evt) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
-function onFormSubmit(e) {
+function onFormSubmit(evt) {
   evt.preventDefault();
-  
+
   const savedDatas = JSON.parse(localStorage.getItem(STORAGE_KEY));
   console.log(savedDatas);
 
@@ -34,7 +34,7 @@ function onFormSubmit(e) {
 
 function reloadPage() {
   if (savedValues) {
-       refs.input.value = savedDataObject.email || '';
-    refs.textarea.value = savedDataObject.message || '';
+    (refs.input.value = savedDataObject.email || ''),
+     (refs.textarea.value = savedDataObject.message || '');
   }
 }
