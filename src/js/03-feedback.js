@@ -33,8 +33,18 @@ function onFormSubmit(evt) {
 }
 
 function reloadPage() {
-  if (savedValues) {
-      (refs.input.value = savedDataObject.email || ''),
-     (refs.textarea.value = savedDataObject.message || '');
+  if (load(STORAGE_KEY)) {
+    const outputForm = load(STORAGE_KEY);
+    const formKeys = Object.keys(outputForm);
+    formKeys.map(element => {
+        document.querySelector(`[name='${element}']`).value = outputForm[element];
+    });
   }
 }
+  // if (savedValues) {
+  //     (refs.input.value = savedDataObject.email || ''),
+  //    (refs.textarea.value = savedDataObject.message || '');
+  // }
+// }
+
+
