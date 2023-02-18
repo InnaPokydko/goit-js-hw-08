@@ -34,7 +34,7 @@ function onFormSubmit(evt) {
 
 function reloadPage() {
   if (savedValues) {
-    (refs.input.value = savedDataObject.email || ''),
+      (refs.input.value = savedDataObject.email || ''),
      (refs.textarea.value = savedDataObject.message || '');
   }
 }
