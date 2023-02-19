@@ -5,8 +5,8 @@ let formData = {};
 
 const refs = {
   form: document.querySelector('.feedback-form'),
-  input: document.querySelector('.feedback-form  input'),
-  textarea: document.querySelector('.feedback-form  textarea'),
+  input: document.querySelector('input[name=email]'),
+  textarea: document.querySelector('textarea[name=message]'),
 };
 
 refs.form.addEventListener('input', throttle(storageFormData, 500));
@@ -15,22 +15,24 @@ refs.form.addEventListener('submit', onFormSubmit);
 reloadPage();
 
 function storageFormData(evt) {
-  formData[evt.target.name] = evt.target.value.trim();
+  formData[evt.target.name] = evt.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+  console.log(formData);
 }
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  console.log(formData);
+  
+  evt.currentTarget.reset();
+  localStorage.removeItem(STORAGE_KEY);
+
   if (refs.input.value === '' || refs.textarea.value === '') {
     return alert('Please fill in all the fields!');
   }
-  evt.currentTarget.reset();
-  localStorage.removeItem(STORAGE_KEY);
-  formData = {};
 }
 
 function reloadPage() {
+  
   const savedDataObject = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
   if (savedDataObject) {
@@ -38,3 +40,16 @@ function reloadPage() {
     refs.textarea.value = savedDataObject.message || '';
   }
 }
+
+// const savedForm = JSON.parse(localStorage.getItem(STORAGE_KEY));
+// Object.entries(savedForm).forEach(([name, value]) => {
+//   formData[name] = value;
+//   formEl.elements[name].value = value;
+// });
+// 
+// if (load(STORAGE_KEY)) {
+//   const outputForm = load(STORAGE_KEY);
+//   const formKeys = Object.keys(outputForm);
+//   formKeys.map(element => {
+//       document.querySelector(`[name='${element}']`).value = outputForm[element];
+//   });
